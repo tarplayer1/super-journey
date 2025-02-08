@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Your Page</title>
+    <style>body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.buttons {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+#newButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#newButton:hover {
+    background-color: #218838;
+}
+</style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth or Dare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Truth or Dare</h1>
+        <div class="buttons">
+            <button onclick="generate('truth')">Truth</button>
+            <button onclick="generate('dare')">Dare</button>
+        </div>
+        <p id="result"></p>
+        <button id="newButton" onclick="newQuestion()">New Question</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <script>const truths = [
+    "What's your biggest fear?",
+    "Have you ever cheated on a test?",
+    "What's the most embarrassing thing you've ever done?",
+    "What's something you're too scared to tell anyone?",
+    "Have you ever lied to get out of trouble?",
+    "What's the worst date you've ever been on?",
+    "Who was your first crush?",
+    "What’s the most awkward thing that’s ever happened to you?",
+    "Have you ever had a crush on someone you shouldn’t have?",
+    "What’s your most embarrassing moment in front of your crush?",
+    "Have you ever kissed someone of the same gender?",
+    "What’s the most embarrassing thing you’ve searched on the internet?",
+    "Have you ever cheated in a game?",
+    "What’s something you’ve done that you regret?",
+    "Who do you have a secret crush on?",
+    "What's your biggest insecurity?",
+    "Have you ever been caught doing something you shouldn’t?",
+    "If you could switch lives with someone, who would it be?",
+    "What's the weirdest thing you've ever eaten?",
+    "Have you ever lied to your best friend?",
+    "What’s your worst habit?",
+    "Have you ever snooped through someone’s phone?",
+    "What’s the biggest secret you've kept from your parents?",
+    "If you could date anyone in this room, who would it be?",
+    "What’s the most awkward thing you've ever done in public?",
+    "Have you ever had a fight with your best friend?",
+    "What’s your biggest pet peeve?",
+    "What’s the weirdest dream you’ve ever had?",
+    "Have you ever been in love with someone you could never have?",
+    "What's the longest time you've gone without talking to your best friend?",
+    "What’s the most childish thing you still do?",
+    "Have you ever told a lie to avoid getting in trouble?",
+    "What’s the most inappropriate thing you’ve laughed at?",
+    "Have you ever had a crush on a fictional character?",
+    "What’s the dumbest thing you’ve ever done for love?",
+    "Who’s the most annoying person in your life right now?",
+    "What’s the most scandalous thing you’ve done?",
+    "Have you ever sexted someone?",
+    "Have you ever gone through someone’s diary?",
+    "What’s something you’re ashamed to admit?",
+    "What’s the weirdest thing you've done to impress someone?",
+    "Have you ever been caught making out?",
+    "What’s the weirdest reason you’ve broken up with someone?",
+    "What’s your worst fear in a relationship?",
+    "Have you ever secretly had feelings for someone who was taken?",
+    "What’s the most romantic thing you’ve done for someone?",
+    "Do you believe in love at first sight?",
+    "What’s your ideal first date?",
+    "Have you ever kissed someone you didn’t want to?",
+    "What’s the biggest lie you’ve told a partner?",
+    "Have you ever stalked an ex on social media?",
+    "What’s your love language?",
+    "What’s your biggest turn-off in a partner?",
+    "Have you ever ghosted someone?",
+    "What’s something about your ex that you miss?",
+    "Have you ever gotten back together with an ex?",
+    "What’s the most awkward date you’ve ever been on?",
+    "What’s the worst thing you’ve done to get back at someone?",
+    "Have you ever cheated on a partner?",
+    "What’s your biggest relationship dealbreaker?",
+    "Have you ever kissed someone just because you felt bad for them?",
+    "What’s something you’ve done on a date that you regret?",
+    "Have you ever been in a toxic relationship?",
+    "What’s the most awkward thing you’ve said to someone you liked?",
+    "Have you ever lied about liking someone to avoid hurting their feelings?",
+    "What’s your most embarrassing message you’ve sent?",
+    "What’s the worst relationship advice you’ve ever received?",
+    "What’s the craziest thing you’ve done for love?",
+    "Have you ever lied about being sick to get out of something?",
+    "What’s the most awkward thing you’ve done on a first date?",
+    "Have you ever stolen something and never told anyone?",
+    "What’s the worst argument you've had with a friend?",
+    "What’s the most embarrassing thing you’ve done for food?",
+    "What’s the worst thing you’ve done to someone out of jealousy?",
+    "Who do you think would be a terrible couple?",
+    "What’s your worst habit when you’re in a relationship?",
+    "Have you ever made out with someone at a party?",
+    "Who in this room would you never date?",
+    "Who’s your celebrity crush?",
+    "What’s something you’ve never told your best friend?"
+];
+
+const dares = [
+    "Do 20 push-ups.",
+    "Sing a song at the top of your lungs.",
+    "Dance like no one's watching.",
+    "Imitate someone until others guess who it is.",
+    "Speak in an accent for the next 5 minutes.",
+    "Kiss your girlfriend or boyfriend on the cheek.",
+    "Slap yourself until your face turns red.",
+    "Go up to a random girl and tell her you like her, then ignore her for the rest of the day.",
+    "Call a friend and tell them you love them, then hang up without any explanation.",
+    "Pretend to be a waiter/waitress and take someone's order, then act like you forgot their order completely.",
+    "Wear socks on your hands for the next 10 minutes.",
+    "Send a random emoji to your crush without any context.",
+    "Post an embarrassing photo on social media.",
+    "Go outside and yell 'I love pizza!' at the top of your lungs.",
+    "Speak in a made-up language until your next turn.",
+    "Do an impression of a famous person until someone guesses who it is.",
+    "Pretend you're a baby for 5 minutes.",
+    "Let someone else send a text from your phone.",
+    "Try to touch your toes while singing a song.",
+    "Let someone else pick an outfit for you to wear for the next hour.",
+    "Do your best robot dance.",
+    "Let someone else write a silly message on your face with a marker.",
+    "Wear a funny hat or wig for the rest of the game.",
+    "Give someone a piggyback ride around the room.",
+    "Eat a spoonful of mustard or hot sauce.",
+    "Call your mom and tell her you love her, and then hang up immediately.",
+    "Run around the house or yard for 2 minutes.",
+    "Walk like a model for the next 2 minutes.",
+    "Do 10 jumping jacks in a row.",
+    "Pretend to be a cat for 3 minutes.",
+    "Post a silly video of yourself on social media.",
+    "Talk in a baby voice for the next 5 minutes.",
+    "Send a voice message to your crush singing a love song.",
+    "Try to lick your elbow.",
+    "Do your best dance moves for 2 minutes.",
+    "Let someone else choose an embarrassing name for you.",
+    "Do a dramatic reading of the last text message you received.",
+    "Do a silly walk around the room.",
+    "Try to juggle 3 items.",
+    "Call a friend and sing ‘Happy Birthday’ to them, even if it’s not their birthday.",
+    "Do 20 jumping jacks while reciting the alphabet.",
+    "Act like a monkey for the next 2 minutes.",
+    "Imitate a celebrity for the next 5 minutes.",
+    "Walk around the house singing the ABCs.",
+    "Do 5 cartwheels in a row.",
+    "Post a video on social media of you doing a funny dance.",
+    "Put on as many layers of clothes as possible and keep them on for 10 minutes.",
+    "Speak in rhyme for the next 3 minutes.",
+    "Pretend you’re a superhero for 5 minutes.",
+    "Do 10 push-ups while singing a song.",
+    "Try to hula-hoop for 3 minutes.",
+    "Talk like a pirate for the next 5 minutes.",
+    "Go up to a random person and compliment them on their outfit.",
+    "Pretend to be a famous celebrity for the next 5 minutes.",
+    "Let someone else choose an embarrassing name for you.",
+    "Do 10 jumping jacks while wearing your clothes inside out.",
+    "Get a referral or compliment from someone within 3 minutes.",
+    "Run to the nearest store and buy something silly like a toy or funny hat.",
+    "Post a status on social media saying ‘I’m the funniest person alive,’ and leave it up for 10 minutes.",
+    "Send a voice message of you screaming at the top of your lungs.",
+    "Get someone to buy you a snack or treat in the next 5 minutes.",
+    "Go to a random neighbor's house and ask if they have any sugar (or another item).",
+    "Make a dramatic speech in front of everyone about your love for pizza.",
+    "Start a random dance in a public area.",
+    "Call a random contact and tell them you just met a famous person.",
+    "Make up a joke and tell it to 3 people in the room until one laughs.",
+    "Send a message to your friend asking them to ‘choose your adventure’ for the day.",
+    "Get a compliment from 3 different people in 5 minutes.",
+    "Go up to a stranger and ask them for a selfie with them.",
+    "Pretend to be a waiter for 5 minutes and take people's orders, but forget their food.",
+    "Order food for delivery and try to convince the driver you’re a famous chef."
+];
+
+function generate(type) {
+    let question;
+    if (type === 'truth') {
+        question = truths[Math.floor(Math.random() * truths.length)];
+    } else if (type === 'dare') {
+        question = dares[Math.floor(Math.random() * dares.length)];
+    }
+    document.getElementById('result').innerText = question;
+}
+
+function newQuestion() {
+    document.getElementById('result').innerText = '';
+}
+</script>
+</body>
+</html>
