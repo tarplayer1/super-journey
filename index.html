@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stupid Achievements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click the button to unlock a random stupid achievement!</h1>
+    <button id="randomAchievementBtn">Random Achievement</button>
+    <h2>Unlocked Achievements</h2>
+    <ul id="achievementList"></ul>
+
+    <script>
+        const achievements = [
+            { name: "Touch Grass", description: "Go outside and touch some grass!" },
+            { name: "Hold a Baby", description: "Find a baby and hold it (safely)!" },
+            { name: "Microwave Nothing", description: "Start your microwave with nothing inside for 1 minute!" },
+            { name: "Forget Your Password", description: "Forget your password and reset it!" },
+            { name: "Charge Your Phone at 99%", description: "Plug in your phone when it’s already almost full!" },
+            { name: "Donate Half a Cent to Charity", description: "You did something good... kinda." },
+            { name: "Walk into a Glass Door", description: "Oops! Didn’t see that one coming!" },
+            { name: "Reply ‘K’ to a Long Text", description: "Minimal effort!" },
+            { name: "Eat Cereal with a Fork", description: "Innovation at its finest!" },
+            { name: "Skip a Tutorial", description: "Who needs instructions anyway?" },
+            { name: "Miss the Trash Can Shot", description: "Almost got it!" },
+            { name: "Trip Over Nothing", description: "You just fell over air." },
+            { name: "Try to Push a Door That Says Pull", description: "Happens to the best of us." },
+            { name: "Forget Why You Walked Into a Room", description: "What was I here for?" },
+            { name: "Binge Watch an Entire Season in One Sitting", description: "Time well spent?" },
+            { name: "Sing the Wrong Lyrics Confidently", description: "It’s definitely not what they said, but okay!" },
+            { name: "Laugh at Your Own Joke", description: "At least someone thinks you're funny!" },
+            { name: "Send a Message and Immediately Regret It", description: "No take-backs!" },
+            { name: "Step in Water While Wearing Socks", description: "The worst feeling ever." },
+            { name: "Swallow a Drink Wrong and Choke on Air", description: "That went down the wrong pipe." },
+            { name: "Accidentally Open the Camera App on Yourself", description: "Wasn’t ready for that angle." },
+            { name: "Drop Your Phone on Your Face", description: "Gravity wins again!" },
+            { name: "Set an Alarm for a Day Off", description: "Why did you do this to yourself?" },
+            { name: "Forget to Bring Something Right After Leaving", description: "Guess we’re turning back." },
+            { name: "Charge Your Laptop Only to Forget to Plug It In", description: "No wonder it’s still dead." },
+            { name: "Google Something Really Obvious", description: "Did you really need to look that up?" },
+            { name: "Finish a Book", description: "You actually did it!" },
+            { name: "Cook a Meal Without Burning It", description: "You’re a chef now!" },
+            { name: "Make a New Friend", description: "Socializing level up!" },
+            { name: "Exercise for More Than 10 Minutes", description: "Fitness unlocked!" },
+            { name: "Save Money Instead of Spending It", description: "Financial wisdom!" },
+            { name: "Wake Up Without Hitting Snooze", description: "The ultimate discipline!" },
+            { name: "Finish a To-Do List", description: "Productivity achievement unlocked!" },
+            { name: "Go a Day Without Procrastinating", description: "Rare but possible!" },
+            { name: "Complete a Personal Project", description: "You actually finished something!" },
+            { name: "Make Someone Smile", description: "Wholesome moment achieved!" },
+            { name: "Drink Water Instead of Soda", description: "Healthy choice!" },
+            { name: "Take a Walk Without Looking at Your Phone", description: "Enjoying the real world!" },
+            { name: "Help a Stranger", description: "Kindness matters!" },
+            { name: "Apologize First", description: "Emotional maturity!" },
+            { name: "Learn a New Skill", description: "Knowledge expanded!" },
+            { name: "Stay Off Social Media for a Day", description: "Digital detox!" },
+            { name: "Go to Sleep on Time", description: "Self-care win!" },
+            { name: "Clean Your Entire Room", description: "Achievement unlocked: Clean Freak!" },
+            { name: "Write Down a Life Goal", description: "Step one to success!" },
+            { name: "Reconnect with an Old Friend", description: "Friendship never dies!" },
+            { name: "Give a Genuine Compliment", description: "Spreading positivity!" },
+
+            // 100 new achievements
+            { name: "Kiss Your Girlfriend", description: "Go ahead and give her a kiss!" },
+            { name: "Get a Girlfriend", description: "You did it! You’ve got a girlfriend!" },
+            { name: "Say 'Get Out' and Actually Leave", description: "When you're brave enough to tell someone to leave and follow through!" },
+            { name: "Trip in Public", description: "Classic public embarrassment!" },
+            { name: "Wave at Someone Who Wasn’t Waving at You", description: "Awkward moment achieved." },
+            { name: "Talk to Someone and Realize You Have Food in Your Teeth", description: "Oops, better get that out!" },
+            { name: "Call Someone the Wrong Name", description: "No hard feelings, right?" },
+            { name: "Walk Into the Wrong Room", description: "Whoops! Wrong door!" },
+            { name: "Tell a Joke That No One Laughs At", description: "It’s okay, we’re all cringey sometimes." },
+            { name: "Accidentally Wave Back at a Stranger", description: "You just became best friends… sort of." },
+            { name: "Start an Argument Over Something Small", description: "Because you had to be right!" },
+            { name: "Forget Your Anniversary", description: "Good luck explaining this one!" },
+            { name: "Order the Same Food as Your Friend", description: "You two are in sync!" },
+            { name: "Get Caught Staring at Someone", description: "They definitely noticed." },
+            { name: "Accidentally Send a Text to the Wrong Person", description: "Oops! That's awkward." },
+            { name: "Send a Heart Emoji to the Wrong Person", description: "What did you just do?" },
+            { name: "Say 'I Love You' to Someone You Just Met", description: "A little over-enthusiastic, huh?" },
+            { name: "Get 'Caught' Talking to Yourself", description: "Who are you talking to?" },
+            { name: "Wear Mismatched Shoes", description: "Fashion statement? Or not." },
+            { name: "Say 'Bye' and Walk in the Same Direction", description: "We’re both going the same way, aren’t we?" },
+            { name: "Get Someone's Order Wrong", description: "It's not what they wanted, but it’s close enough!" },
+            { name: "Tell Someone They Have Something in Their Teeth", description: "Now they can fix it!" },
+            { name: "Accidentally 'Like' an Old Post", description: "Well, they know you were lurking." },
+            { name: "Tell a Friend 'I Told You So'", description: "Because sometimes you just have to." },
+            { name: "Get Caught Singing in the Car", description: "But you were just vibing!" },
+            { name: "Accidentally Hit Someone with Your Bag", description: "Oops, sorry!" },
+            { name: "Get Caught Dancing in Your Room", description: "You thought no one was watching." },
+            { name: "Forget to Put on Deodorant", description: "Today’s a little… stinky." },
+            { name: "Call Someone the Wrong Name in Public", description: "Oops, sorry for the mix-up!" },
+            { name: "Confuse Two People with the Same Name", description: "I swear, they look alike!" },
+            { name: "Accidentally Hit 'Reply All' in an Email", description: "Now everyone knows your business." }
+        ];
+
+        let unlockedAchievements = [];
+
+        function unlockAllAchievements() {
+            achievements.forEach(achievement => {
+                let listItem = document.createElement("li");
+                listItem.innerHTML = `<input type="checkbox" disabled> <b>${achievement.name}</b>: ${achievement.description}`;
+                achievementList.appendChild(listItem);
+            });
+        }
+
+        function getRandomAchievement() {
+            let randomIndex = Math.floor(Math.random() * achievements.length);
+            let achievement = achievements.splice(randomIndex, 1)[0];
+            unlockedAchievements.push(achievement);
+
+            let listItem = document.createElement("li");
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            listItem.appendChild(checkbox);
+            listItem.appendChild(document.createTextNode(` ${achievement.name} - ${achievement.description}`));
+            document.getElementById("achievementList").appendChild(listItem);
+        }
+
+        randomAchievementBtn.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+            unlockAllAchievements();
+        });
+
+        randomAchievementBtn.addEventListener("click", getRandomAchievement);
+    </script>
+</body>
+</html>
